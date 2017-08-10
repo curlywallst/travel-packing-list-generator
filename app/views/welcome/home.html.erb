@@ -1,0 +1,15 @@
+<h1>Trip Packing Lists</h1>
+
+
+
+  <% @categories.each do |category| %>
+    <%= link_to category.name, category_path(category) %>
+  <% end %>
+
+  <% @items.each do |item| %>
+      <p><%= item.name %>
+  <% end %>
+
+ <% if !user_signed_in? %>
+    <h3>User not logged in</h3>
+  <% end %>
