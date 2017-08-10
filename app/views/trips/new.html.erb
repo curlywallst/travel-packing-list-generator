@@ -1,0 +1,13 @@
+<%= form_for @trip do |f| %>
+  <%= f.label "Trip Name" %>
+  <%= f.text_field :name %><br />
+  <%= f.label "Destination" %>
+  <%= f.text_field :place %><br />
+
+  <%= f.fields_for :categories do |i| %>
+    <%= i.label "Category Name" %>
+    <%= i.text_field :name %><br />
+  <%end%>
+  <br>
+  <%= f.submit%>
+<% end %>

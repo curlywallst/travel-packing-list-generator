@@ -1,15 +1,15 @@
 <h1>Trip Packing Lists</h1>
 
-
-
-  <% @categories.each do |category| %>
-    <%= link_to category.name, category_path(category) %>
-  <% end %>
-
-  <% @items.each do |item| %>
-      <p><%= item.name %>
-  <% end %>
+<%= form_for @trip do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br />
+  <%= f.fields_for :categories do |i| %>
+    <%= i.label :name%>
+    <%= i.text_field :name %><br />
+  <%end%>
+  <%= f.submit%>
+<% end %>
 
  <% if !user_signed_in? %>
-    <h3>User not logged in</h3>
-  <% end %>
+  <h3>User not logged in</h3>
+<% end %>
