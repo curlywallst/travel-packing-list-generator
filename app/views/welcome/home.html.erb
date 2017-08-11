@@ -1,14 +1,12 @@
 <h1>Trip Packing Lists</h1>
 
-<%= form_for @trip do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %><br />
-  <%= f.fields_for :categories do |i| %>
-    <%= i.label :name%>
-    <%= i.text_field :name %><br />
-  <%end%>
-  <%= f.submit%>
+<h3>List of Trips</h3>
+<% current_user.trips.each do |trip| %>
+  <p><%= link_to trip.title, trip_path(trip) %>
 <% end %>
+
+<%= button_to 'Add Trip', new_trip_path, method: :get %>
+
 
  <% if !user_signed_in? %>
   <h3>User not logged in</h3>
