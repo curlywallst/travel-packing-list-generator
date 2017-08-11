@@ -1,12 +1,13 @@
 <h1>Trip Packing Lists</h1>
 
-<h3>List of Trips</h3>
-<% current_user.trips.each do |trip| %>
-  <p><%= link_to trip.title, trip_path(trip) %>
-<% end %>
+<% if user_signed_in? %>
+  <h3>List of Trips</h3>
+  <% current_user.trips.each do |trip| %>
+    <p><%= link_to trip.title, trip_path(trip) %>
+  <% end %>
 
 <%= button_to 'Add Trip', new_trip_path, method: :get %>
-
+<% end %>
 
  <% if !user_signed_in? %>
   <h3>User not logged in</h3>

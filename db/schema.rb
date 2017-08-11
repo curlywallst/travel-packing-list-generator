@@ -37,21 +37,12 @@ ActiveRecord::Schema.define(version: 20170811120028) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "trip_categories", force: :cascade do |t|
-    t.integer  "trip_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "trip_categories", ["category_id"], name: "index_trip_categories_on_category_id"
-  add_index "trip_categories", ["trip_id"], name: "index_trip_categories_on_trip_id"
-
   create_table "trips", force: :cascade do |t|
     t.string   "title"
     t.string   "destination"
     t.integer  "year"
     t.string   "notes"
+    t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "user_id"

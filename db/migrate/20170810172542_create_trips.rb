@@ -5,6 +5,7 @@ class CreateTrips < ActiveRecord::Migration
       t.string :destination
       t.integer :year
       t.string :notes
+      t.integer :category_id
 
       t.timestamps null: false
     end
