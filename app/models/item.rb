@@ -1,3 +1,3 @@
 class Item < ActiveRecord::Base
-  belongss_to :category
+  belongs_to :category
 end

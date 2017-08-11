@@ -1,6 +1,6 @@
 class Trip < ActiveRecord::Base
   belongs_to :user
-  has_and_belongs_to_many :categories
-  has_many :items, through: :categories
+  has_many :trip_categories
+  has_many :categories, through: :trip_categories
 
 end
