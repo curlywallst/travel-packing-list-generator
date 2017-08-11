@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(version: 20170810234254) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "trip_categories", ["category_id"], name: "index_trip_categories_on_category_id"
+  add_index "trip_categories", ["trip_id"], name: "index_trip_categories_on_trip_id"
+
   create_table "trips", force: :cascade do |t|
     t.string   "title"
     t.string   "destination"

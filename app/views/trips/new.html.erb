@@ -1,13 +1,21 @@
 <%= form_for @trip do |f| %>
-  <%= f.label "Trip Name" %>
-  <%= f.text_field :name %><br />
+  <%= f.label "Trip Title" %>
+  <%= f.text_field :title %><br />
   <%= f.label "Destination" %>
-  <%= f.text_field :place %><br />
+  <%= f.text_field :destination %><br />
+  <%= f.label "Year" %>
+  <%= f.text_field :year %><br />
+  <%= f.label "Trip Notes" %>
+  <%= f.text_area :notes %><br/>
 
-  <%= f.fields_for :categories do |i| %>
-    <%= i.label "Category Name" %>
-    <%= i.text_field :name %><br />
-  <%end%>
-  <br>
+  <h3>Select Category</h3>
+  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+
+  <%= f.fields_for :categories, @trip.categories.build do |categories_fields| %><br />
+  <%= f.label "Or create new category " %>
+  <%= categories_fields.text_field :name %><br />
+  <% end %>
+
+  <br></br>
   <%= f.submit%>
 <% end %>
