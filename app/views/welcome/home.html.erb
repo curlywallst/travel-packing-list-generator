@@ -3,12 +3,18 @@
 <% if user_signed_in? %>
   <h3>List of Trips</h3>
   <% current_user.trips.each do |trip| %>
-    <p><%= link_to trip.title, trip_path(trip) %>
+    <p><%= link_to trip.title+' - '+trip.year.to_s , trip_path(trip) %></p>
   <% end %>
 
-<%= button_to 'Add Trip', new_trip_path, method: :get %>
-<% end %>
+  <%= button_to 'Add Trip', new_trip_path, method: :get %>
 
+  <h3>Trips by Category</h3>
+  <% current_user.categories.uniq.each do |category| %>
+    <p><%= link_to category.name, category_path(category) %>
+  <% end %>
+<% end %>
+<br>
  <% if !user_signed_in? %>
   <h3>User not logged in</h3>
 <% end %>
+<br>

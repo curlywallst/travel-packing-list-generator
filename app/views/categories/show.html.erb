@@ -1,0 +1,11 @@
+<h1><%= @category.name %> Trips</h1>
+
+<ul>
+  <% @category.trips.each do |trip| %>
+    <li><%= link_to trip.title+' - '+trip.year.to_s , trip_path(trip) %></li>
+  <% end %>
+</ul>
+<br>
+
+<%= button_to 'Add Trip', new_trip_path, method: :get %>
+<br>

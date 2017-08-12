@@ -19,23 +19,23 @@ ActiveRecord::Schema.define(version: 20170811120028) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "category_items", force: :cascade do |t|
-    t.integer  "category_id"
-    t.integer  "item_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "category_items", ["category_id"], name: "index_category_items_on_category_id"
-  add_index "category_items", ["item_id"], name: "index_category_items_on_item_id"
-
   create_table "items", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "quantity"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "trip_items", force: :cascade do |t|
+    t.integer  "trip_id"
+    t.integer  "item_id"
+    t.integer  "quantity",   default: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "trip_items", ["item_id"], name: "index_trip_items_on_item_id"
+  add_index "trip_items", ["trip_id"], name: "index_trip_items_on_trip_id"
 
   create_table "trips", force: :cascade do |t|
     t.string   "title"

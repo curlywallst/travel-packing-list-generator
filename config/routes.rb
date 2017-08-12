@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :trips
+  resources :trip_items
 
   root 'welcome#home'
 
