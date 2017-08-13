@@ -38,7 +38,7 @@ class Trip < ActiveRecord::Base
     category = Category.new(:name => category_name)
     if category.valid?
       self.category = Category.find_or_create_by(name: category_name)
-    elsif !category_id.nil? && !category_id == ""
+    elsif !category_id.nil? && category_id != ""
       self.category = Category.find(category_id)
     else
       category.valid?

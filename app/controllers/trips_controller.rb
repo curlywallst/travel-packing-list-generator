@@ -7,7 +7,7 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.create(trip_params)
-    @trip.add_category(@trip, params[:trip][:category_id], params[:trip][:categories][:name])
+    @trip.add_category(params[:trip][:category_id], params[:trip][:categories][:name])
     if @trip.category
       @trip.save
       current_user.trips << @trip
@@ -24,24 +24,29 @@ class TripsController < ApplicationController
   end
 
   def update
-    @trip = Trip.find(params[:id])
-    @trip.update(trip_params)
-    @trip.update_items(params[:trip][:item_ids], params[:trip][:items_attributes], params[:trip_item][:quantity])
-    binding.pry
-    if @item.valid?
-    # if params[:trip][:item_ids].present? || params[:trip][:items_attributes]
-    #   if params[:trip][:item_ids].present?
-    #     @item = Item.find(params[:trip][:item_ids])
-    #   else
-    #     @item = Item.find_or_create_by(name: params[:trip][:items_attributes].first[1][:name])
-    #     @item.save
-    #   end
-    #   @trip_item = TripItem.new(trip_id: @trip.id, item_id: @item.id, quantity: params[:trip_item][:quantity])
-    #   @trip_item.save
-    # end
-      redirect_to trip_path(@trip)
+    if params[:trip][:items_attributes].present?
+      @trip = Trip.find(params[:id])
+      @trip.update_items(params[:trip][:item_ids], params[:trip][:items_attributes], params[:trip_item][:quantity])
+      if @item.present?
+        redirect_to trip_path(@trip)
+      else
+        @trip_item = TripItem.new
+        render '/trips/show'
+      end
     else
-      render '/trips/edit'
+      @trip_check = Trip.new (trip_params)
+      if @trip_check.valid?
+        @trip = Trip.find(params[:id])
+        if @trip.add_category(params[:trip][:category_id], params[:trip][:categories][:name])
+          @trip.update(trip_params)
+          redirect_to trip_path(@trip)
+        end
+      else
+        @trip_check.add_category(params[:trip][:category_id], params[:trip][:categories][:name])
+        @categories = Category.all
+        @trip = Trip.find(params[:id])
+        render template: "trips/edit"
+      end
     end
   end
 

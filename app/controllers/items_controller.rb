@@ -1,12 +1,5 @@
 class ItemsController < ApplicationController
 
-  def new
-  end
-
-  def create
-    binding.pry
-  end
-
   def index
     @trip = Trip.find(params[:trip_id])
     @items = @trip.items
@@ -19,7 +12,20 @@ class ItemsController < ApplicationController
   end
 
   def update
-    binding.pry
+    @item_check = Item.new(:name => params[:item][:items][:name])
+    @trip = Trip.find(params[:trip_id])
+    @trip_item = @trip.trip_items.find_by(item_id: params[:id])
+    if @item_check.valid?
+      @item = Item.find(params[:id])
+      @item.name = params[:item][:items][:name]
+      @trip_item.quantity = params[:trip_item][:quantity]
+      @trip_item.save
+      @item.save
+      redirect_to trip_items_path
+    else
+      @item = Item.find(params[:id])
+      render '/items/edit'
+    end
   end
 
   def destroy

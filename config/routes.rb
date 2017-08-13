@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
 
-  resources :categories
+  resources :categories, only: [:new, :show]
 
   resources :trips do
-    resources :items
+    resources :items, only: [:index, :edit, :update, :destroy]
   end
 
 
