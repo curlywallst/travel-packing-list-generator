@@ -4,22 +4,30 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
-    if params[:trip][:item_id].nil? || params[:item][:item_id] == ""
-      @trip.category = Category.find_or_create_by(name: params[:item][:categories][:name])
-    else
-      @trip.category = Category.find(params[:item][:category_id][0])
-    end
-    current_user.trips << @item
-    redirect_to trip_path(@item)
+    binding.pry
   end
 
   def index
-    @items = Item.all
+    @trip = Trip.find(params[:trip_id])
+    @items = @trip.items
   end
 
-  def show
+  def edit
+    @item = Item.find(params[:id])
+    @trip = Trip.find(params[:trip_id])
+    @trip_item = @trip.trip_items.find_by(item_id: @item.id)
+  end
 
+  def update
+    binding.pry
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @trip = Trip.find(params[:trip_id])
+    @trip_item = @trip.trip_items.find_by(item_id: @item.id)
+    @trip_item.delete
+    redirect_to trip_items_path(@trip)
   end
 
   private

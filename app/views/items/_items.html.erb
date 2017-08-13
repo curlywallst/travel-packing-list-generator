@@ -1,0 +1,9 @@
+<fieldset>
+  <legend>Items To Pack:</legend>
+  <ul>
+    <% @trip.items.each do |item| %>
+      <li><%= item.name %> - <%= item.quantity(@trip.id, item.id) %></li>
+    <% end %>
+  </ul>
+  <p>Trip Notes: <%= @trip.notes %></p>
+</fieldset>

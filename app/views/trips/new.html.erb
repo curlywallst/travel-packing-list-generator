@@ -1,22 +1,28 @@
-<%= form_for @trip do |f| %>
-  <%= f.label "Trip Title" %>
-  <%= f.text_field :title %><br />
-  <%= f.label "Destination" %>
-  <%= f.text_field :destination %><br />
-  <%= f.label "Year" %>
-  <%= f.number_field :year %><br />
-  <%= f.label "Trip Notes" %>
-  <%= f.text_area :notes %><br/>
 
-  <h3>Select Category</h3>
-  <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Category"%>
 
-  <%= f.fields_for :categories, @categories.build do |categories_fields| %><br />
-  <%= f.label "Or create new category " %>
-  <%= categories_fields.text_field :name %><br />
-  <% end %>
+  <%= form_for @trip do |f| %>
 
-  <br></br>
-  <%= f.submit%>
+    <%= render 'form', f: f %>
+
+    <br></br>
+
+    <%= render 'categories/add_categories', f: f %>
+
+    <br></br>
+
+  <%= f.submit %>
+
 <% end %>
-<br>
+<br></br>
+
+<% if @trip.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+    <ul>
+    <% @trip.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

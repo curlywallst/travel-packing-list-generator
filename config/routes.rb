@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :items
 
   resources :categories
 
-  resources :trips
-  resources :trip_items
+  resources :trips do
+    resources :items
+  end
+
+
 
   root 'welcome#home'
 

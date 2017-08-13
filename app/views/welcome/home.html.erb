@@ -1,19 +1,25 @@
 <h1>Trip Packing Lists</h1>
 
 <% if user_signed_in? %>
-  <h3>List of Trips</h3>
-  <% current_user.trips.each do |trip| %>
-    <p><%= link_to trip.title+' - '+trip.year.to_s , trip_path(trip) %></p>
-  <% end %>
+  <fieldset>
+    <legend>List of Trips</legend>
+    <ul>
+      <% current_user.trips.each do |trip| %>
+        <li><%= link_to trip.title+' - '+trip.year.to_s , trip_path(trip) %></li>
+      <% end %>
+    </ul>
+  </fieldset>
 
   <%= button_to 'Add Trip', new_trip_path, method: :get %>
 
-  <h3>Trips by Category</h3>
-  <% current_user.categories.uniq.each do |category| %>
-    <p><%= link_to category.name, category_path(category) %>
-  <% end %>
+  <br></br>
+
+  <%= render '/categories/categories' %>
+
 <% end %>
+
 <br>
+
  <% if !user_signed_in? %>
   <h3>User not logged in</h3>
 <% end %>

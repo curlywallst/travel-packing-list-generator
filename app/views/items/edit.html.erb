@@ -1,0 +1,21 @@
+<fieldset>
+  <legend>Item Details</legend>
+
+  <%= form_for @trip do |f| %>
+    <%= f.fields_for :items, @trip.items.build do |item_fields| %><br />
+      <%= item_fields.label "Item Name" %>
+      <%= item_fields.text_field :name, value: @item.name %>
+    <% end %>
+    <%= fields_for @trip_item do |ti| %>
+      <%= ti.label "Item Quantity: " %>
+      <%= ti.number_field :quantity, value: @trip_item.quantity %><br />
+    <% end %>
+    <%= button_to "Update", {:controller => :items, :action => 'update', :id => @item.id }, :method => :update %><br />
+  <% end %>
+</fieldset>
+<%= button_to "Delete", {:controller => :items, :action => 'destroy', :id => @item.id }, :method => :delete %><br />
+
+<%= button_to 'Back', trip_items_path(@trip), method: :get %><br />
+
+
+<br />

@@ -1,0 +1,34 @@
+  <div class="field_with_errors">
+  <fieldset>
+  <legend><h3>Add New Items To The List - Select From Existing <%= @trip.category.name.capitalize %> Items Or Add New Item:</h3></legend>
+
+    <%= form_for @trip do |f| %>
+    <%= f.collection_radio_buttons :item_ids, @trip.category.items.all.uniq, :id, :name %>
+    <%= f.fields_for :items, @trip.items.build do |item_fields| %><br />
+      <%= f.label "New Item Name" %>
+      <%= item_fields.text_field :name %>
+    <% end %>
+
+    <br>
+
+    <%= fields_for @trip_item do |ti| %>
+      <%= ti.label "Item Quantity: " %>
+      <%= ti.number_field :quantity %><br />
+    <% end %>
+    <%= f.button "Add Item" %>
+  <% end %>
+</div>
+</fieldset>
+
+
+<% if @trip.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+    <ul>
+    <% @trip.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

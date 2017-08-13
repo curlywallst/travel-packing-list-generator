@@ -1,0 +1,8 @@
+<legend>Select Category</legend>
+
+<%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Existing Categories"%>
+
+<%= f.fields_for :categories, @categories.build do |categories_fields| %><br />
+<%= f.label "New category " %>
+<%= categories_fields.text_field :name %><br />
+<% end %>
