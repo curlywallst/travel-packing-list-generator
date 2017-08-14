@@ -55,6 +55,15 @@ class TripsController < ApplicationController
     @trip_item = TripItem.new
   end
 
+  def destroy
+    @trip = Trip.find(params[:id])
+    trip_items = @trip.trip_items.select { |e| e.trip_id == @trip.id }.each do |trip_item|
+      trip_item.delete
+    end
+    @trip.delete
+    redirect_to root_path
+  end
+
 
   private
 

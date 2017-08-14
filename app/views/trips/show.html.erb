@@ -3,10 +3,11 @@
 
 <h2>Trip Category: <%= @trip.category.name%></h2>
 <%= button_to 'Edit Trip Details', edit_trip_path, method: :get %><br />
+<%= button_to "Delete Trip", {:controller => :trips, :action => 'destroy', :id => @trip.id }, :method => :delete %><br />
 
 <% if user_signed_in? %>
     <%= render 'items/items' %>
-    <%= button_to 'Edit/Display Current List Items', trip_items_path(@trip), method: :get %><br />
+    <%= button_to 'Display List', trip_items_path(@trip), method: :get %><br />
     <br></br>
     <%= render 'items/add_items' %>
     <br><br />
