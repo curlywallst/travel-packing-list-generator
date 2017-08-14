@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  resources :categories, only: [:new, :show]
+  resources :categories, only: [:show]
 
   resources :trips do
     resources :items, only: [:index, :edit, :update, :destroy]
