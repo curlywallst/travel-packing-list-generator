@@ -3,7 +3,7 @@ Flatiron school Rails Final Project
 
 Travel Packing List Generator
 
-This is a Rails application that allows users to create accounts and add information about their trips and generate packing lists.  The Models included are:
+This is a Ruby on Rails application that allows users to create accounts and add information about their trips and generate packing lists.  The Models included are:
 
   User - has many trips and has many categories through trips
   Category - has many trips and has many items through trips
