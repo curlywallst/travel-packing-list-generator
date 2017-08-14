@@ -23,4 +23,11 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
     end
   end
+
+  def trips_in_category(category)
+    self.trips.select{ |e| e.category.id == category.id }.uniq
+  end
+
+
+
 end

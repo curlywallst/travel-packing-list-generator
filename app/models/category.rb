@@ -10,5 +10,4 @@ class Category < ActiveRecord::Base
     self.item.update(item)
   end
 
-
 end
