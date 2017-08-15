@@ -45,7 +45,6 @@ class Trip < ActiveRecord::Base
     end
   end
 
-
   def items_in_category
     trips = self.user.trips.select { |e| e.category.id == category.id }
     items = []
@@ -53,7 +52,6 @@ class Trip < ActiveRecord::Base
       items << trip.items
     end
     items = items.flatten.uniq
-
   end
 
 

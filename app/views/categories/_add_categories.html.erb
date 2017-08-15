@@ -2,7 +2,7 @@
   <fieldset>
     <legend>Select Category</legend>
 
-    <%= f.collection_select(:category_id, Category.all, :id, :name, {:include_blank => true, :prompt => 'Existing Categories'}) %>
+    <%= f.collection_select(:category_id, current_user.categories.uniq, :id, :name, {:include_blank => true, :prompt => 'Existing Categories'}) %>
 
     <%= f.fields_for :categories, @categories.build do |categories_fields| %><br />
     <%= f.label "New category " %>
