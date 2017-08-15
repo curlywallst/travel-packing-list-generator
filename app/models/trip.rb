@@ -54,5 +54,14 @@ class Trip < ActiveRecord::Base
     items = items.flatten.uniq
   end
 
+  def items_of_user
+    trips = self.user.trips
+    items = []
+    trips.each do |trip|
+      items << trip.items
+    end
+    items = items.flatten.uniq
+  end
+
 
 end

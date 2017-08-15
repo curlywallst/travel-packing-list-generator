@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :edit, :update, :destroy]
   end
 
+  get '/trips/:id/display_option', to: 'trips#display_option'
+
 
 
   root 'welcome#home'

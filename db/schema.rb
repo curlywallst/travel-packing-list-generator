@@ -43,9 +43,10 @@ ActiveRecord::Schema.define(version: 20170811120028) do
     t.integer  "year"
     t.string   "notes"
     t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "user_id"
+    t.string   "display_option", default: "category_items"
   end
 
   create_table "users", force: :cascade do |t|

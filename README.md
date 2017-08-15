@@ -37,4 +37,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/curlyw
 
 License
 
-This application was developed under the guidance of Flatiron School on loearn.co.
+This application was developed under the guidance of Flatiron School on learn.co.

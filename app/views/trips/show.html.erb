@@ -10,7 +10,6 @@
     <%= button_to 'Display List', trip_items_path(@trip), method: :get %><br />
     <br></br>
     <%= render 'items/add_items' %>
-    <br><br />
 <% end %>
 
 <% if @trip.errors.any? %>
