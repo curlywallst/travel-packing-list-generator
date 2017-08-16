@@ -24,6 +24,7 @@ class TripsController < ApplicationController
   end
 
   def update
+    binding.pry
     if params[:trip][:display_option].present?
       @trip = Trip.find(params[:id])
       @trip.display_option = params[:trip][:display_option]
@@ -80,6 +81,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:title, :destination, :year, :notes, :category_id, item_ids:[], item_attributes: [:name])
+    params.require(:trip).permit(:title, :destination, :year, :notes, :category_id, :display_option, item_ids:[], item_attributes: [:name])
   end
 end
