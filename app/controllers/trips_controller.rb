@@ -24,7 +24,6 @@ class TripsController < ApplicationController
   end
 
   def update
-    binding.pry
     if params[:trip][:display_option].present?
       @trip = Trip.find(params[:id])
       @trip.display_option = params[:trip][:display_option]
